@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 400px;
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #30363d;
+            background: #0d1117;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab:hover {
+            background: #161b22;
+        }
+
+        .tab.active {
+            border-bottom-color: #58a6ff;
+            color: #58a6ff;
+        }
+
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .content.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .repo-card {
+            padding: 16px;
+            border-bottom: 1px solid #30363d;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .repo-card:hover {
+            background: #161b22;
+        }
+
+        .repo-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .repo-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .repo-name {
+            font-weight: 600;
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        .repo-name:hover {
+            text-decoration: underline;
+        }
+
+        .repo-description {
+            font-size: 13px;
+            color: #8b949e;
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .repo-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            color: #8b949e;
+        }
+
+        .repo-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #8b949e;
+        }
+
+        .error {
+            padding: 16px;
+            background: #3d2626;
+            color: #f85149;
+            border-radius: 6px;
+            margin: 12px;
+            font-size: 13px;
+        }
+
+        .auth-section {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .auth-button {
+            background: #238636;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 8px;
+            transition: background 0.2s;
+        }
+
+        .auth-button:hover {
+            background: #2ea043;
+        }
+
+        .refresh-button {
+            padding: 8px 12px;
+            background: #238636;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            margin: 8px;
+        }
+
+        .refresh-button:hover {
+            background: #2ea043;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" data-tab="following">Following</div>
+            <div class="tab" data-tab="discover">Discover</div>
+        </div>
+
+        <div id="following" class="content active">
+            <div class="loading" id="following-loading">Loading...</div>
+            <div id="following-list"></div>
+        </div>
+
+        <div id="discover" class="content">
+            <div class="loading" id="discover-loading">Loading...</div>
+            <div id="discover-list"></div>
+        </div>
+    </div>
+
+    <script src="popup.js"><\/script>
+</body>
+</html>
